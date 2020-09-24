@@ -18,4 +18,15 @@ class HierarchyItem
       @ancestors << options[:parent].ref # добавляем самого родителя в предки
     end
   end
+
+  def new_parent parent = nil
+    if parent.nil?
+      @level = 0
+      @ancestors = []
+    else
+      @level = parent.level + 1
+      @ancestors = parent.ancestors.clone
+      @ancestors << parent.ref # добавляем самого родителя в предки
+    end
+  end
 end
